@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+    rtsp-relay:
+        image: flaviostutz/rtsp-relay
+        container_name: 'rtsp-server'
+        restart: always
+        ports:
+            - 8554:8554
+        environment:
+            - SOURCE_URL=file:///samples/input_src.mp4
+            - STREAM_NAME=rtspvideo
+        volumes:
+            - ./src/samples:/samples
+        networks:
+            - rtsp
+#output rtsp url: "rtsp://172.18.124.21:8554/rtspvideo"
+networks:
+  rtsp:
